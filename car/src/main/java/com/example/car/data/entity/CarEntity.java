@@ -47,4 +47,10 @@ public class CarEntity {
     @Column(name = "CAR_YEAR")
     private int year;
 
+    @Column(name = "CAR_IMAGE")
+    private String image;
+
+    @Column(name = "CAR_RESERVATIONS")
+    private String reservations;
+
 }

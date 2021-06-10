@@ -1,17 +1,18 @@
 package com.example.car.controller;
 
 import com.example.car.model.Car;
+import com.example.car.model.SimpleCar;
 import com.example.car.service.CarService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/car")
@@ -24,26 +25,28 @@ public class CarController {
 
     @ResponseBody
     @GetMapping("/all")
-    public List<Car> getAllCars() {
+    public List<SimpleCar> getAllCars() {
         return carService.getAllCars();
     }
 
-    @GetMapping("/search")
-    public String searchCars(Model model) {
-        return filterCars(model);
+    @ResponseBody
+    @GetMapping("/{id}")
+    public Car getCar(@PathVariable long id) {
+        return carService.getCarById(id);
     }
 
-    @PostMapping("/filtered")
-    public String submitCars(Model model, @RequestBody String searchedCars) {
-        List<String> cars = Arrays.asList(searchedCars.split("&"));
-        cars.forEach(System.out::println);
-        return filterCars(model);
+    @ResponseBody
+    @GetMapping("/search/{brand}")
+    public List<SimpleCar> searchCars(@PathVariable String brand) {
+        List<String> brands = Arrays.asList(brand.toLowerCase().split(","));
+        return brands.stream().map(carService::getAllSearchedCars)
+                .flatMap(Collection::stream).collect(Collectors.toList());
     }
 
-    private String filterCars(Model model) {
-//        model.addAttribute("output", );
-        model.addAttribute("cars", carService.getAllCars());
-
-        return "dummy";
+    @ResponseBody
+    @GetMapping("/top")
+    public List<SimpleCar> topCars() {
+        return carService.getTopCars();
     }
+
 }

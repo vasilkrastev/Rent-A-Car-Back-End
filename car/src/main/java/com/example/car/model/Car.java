@@ -20,5 +20,7 @@ public class Car {
     private String fuel;
     private String transmission;
     private int year;
+    private String image;
+    private String reservations;
 
 }
