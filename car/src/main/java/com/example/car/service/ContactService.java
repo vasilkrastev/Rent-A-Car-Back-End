@@ -3,8 +3,13 @@ package com.example.car.service;
 import com.example.car.converter.ContactConverter;
 import com.example.car.data.entity.ContactEntity;
 import com.example.car.data.repository.ContactRepository;
+import com.example.car.model.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ContactService {
@@ -28,5 +33,12 @@ public class ContactService {
         contactRepository.save(contactEntity);
 
         return contactEntity;
+    }
+
+    public List<Contact> getReviews() {
+        List<ContactEntity> contacts = new ArrayList<>();
+        this.contactRepository.findAll().forEach(contacts::add);
+        return contactConverter.convertMultipleContactEntityToContact(contacts.stream()
+                .limit(4).collect(Collectors.toList()));
     }
 }
