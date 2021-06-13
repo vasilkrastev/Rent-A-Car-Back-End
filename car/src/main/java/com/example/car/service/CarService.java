@@ -50,8 +50,13 @@ public class CarService {
             SimpleCar simpleCar = new SimpleCar(car);
             cars.add(simpleCar);
         });
-        return cars.stream().filter(car -> car.getBrand().toLowerCase().equals(brand))
+
+        List<SimpleCar> collectCars = cars.stream().filter(car -> car.getBrand().toLowerCase().equals(brand))
                 .collect(Collectors.toList());
+        if (collectCars.isEmpty()) {
+            throw new NoSuchDataException("No such brand like " + brand);
+        }
+        return collectCars;
     }
 
     public List<SimpleCar> getTopCars() {
@@ -61,5 +66,11 @@ public class CarService {
             cars.add(simpleCar);
         });
         return cars.stream().limit(4).collect(Collectors.toList());
+    }
+
+    public void updateCarReservations(long id, String dates) {
+        CarEntity car = carRepository.findById(id).orElseThrow(() -> new NoSuchDataException("No such car"));
+        car.setReservations(dates);
+        carRepository.save(car);
     }
 }
