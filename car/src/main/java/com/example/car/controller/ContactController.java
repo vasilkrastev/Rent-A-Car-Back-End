@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8090", allowedHeaders = "")
+@CrossOrigin(origins = "*")
 @RequestMapping("/contact")
 public class ContactController {
     private final ContactService contactService;

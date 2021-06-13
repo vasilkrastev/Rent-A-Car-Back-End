@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:8090", allowedHeaders = "")
+@CrossOrigin(origins = "*")
 @RequestMapping("/car")
 public class CarController {
     private final CarService carService;
