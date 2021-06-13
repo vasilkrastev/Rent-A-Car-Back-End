@@ -53,4 +53,8 @@ public class CarEntity {
     @Column(name = "CAR_RESERVATIONS")
     private String reservations;
 
+
+    public void setReservations(String reservations) {
+        this.reservations += reservations + ",";
+    }
 }
