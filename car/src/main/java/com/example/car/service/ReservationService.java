@@ -3,7 +3,6 @@ package com.example.car.service;
 import com.example.car.converter.ReservationConverter;
 import com.example.car.data.entity.ReservationEntity;
 import com.example.car.data.repository.ReservationRepository;
-import com.example.car.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
