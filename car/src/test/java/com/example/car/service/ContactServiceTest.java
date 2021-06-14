@@ -1,13 +1,9 @@
 package com.example.car.service;
 
-import com.example.car.controller.ContactController;
 import com.example.car.converter.ContactConverter;
-import com.example.car.data.entity.CarEntity;
 import com.example.car.data.entity.ContactEntity;
-import com.example.car.data.entity.ReservationEntity;
 import com.example.car.data.repository.ContactRepository;
 import com.example.car.model.Contact;
-import com.example.car.model.SimpleCar;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +31,7 @@ public class ContactServiceTest {
     private ContactService contactService;
 
     @Before
-    public void init(){
+    public void init() {
         contactService = new ContactService(contactConverter, contactRepository);
     }
 
