@@ -55,6 +55,11 @@ public class CarEntity {
 
 
     public void setReservations(String reservations) {
-        this.reservations += reservations + ",";
+        if (this.reservations == null) {
+            this.reservations = reservations + ",";
+        } else {
+            this.reservations += reservations + ",";
+        }
+
     }
 }

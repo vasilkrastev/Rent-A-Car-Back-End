@@ -47,7 +47,7 @@ public class CarController {
 
     @ResponseBody
     @GetMapping("/top")
-    public List<SimpleCar> topCars() {
+    public List<SimpleCar> getTopCars() {
         return carService.getTopCars();
     }
 

@@ -22,13 +22,7 @@ public class ContactService {
         this.contactRepository = contactRepository;
     }
 
-    public ContactEntity contact(ContactEntity newContactEntity) {
-        ContactEntity contactEntity = new ContactEntity();
-
-        contactEntity.setNameUser(newContactEntity.getNameUser());
-        contactEntity.setEmailUser(newContactEntity.getEmailUser());
-        contactEntity.setTypeReview(newContactEntity.getTypeReview());
-        contactEntity.setReview(newContactEntity.getReview());
+    public ContactEntity contact(ContactEntity contactEntity) {
 
         contactRepository.save(contactEntity);
 
