@@ -21,10 +21,6 @@ public class ContactConverter extends BaseConverter{
         return modelMapper.map(contactEntity, Contact.class);
     }
 
-    public ContactEntity convertContactToContactEntity(Contact contact) {
-        return modelMapper.map(contact, ContactEntity.class);
-    }
-
     public List<Contact> convertMultipleContactEntityToContact(List<ContactEntity> contactEntities) {
         List<Contact> contacts = new ArrayList<>();
         contactEntities.forEach(contactEntity -> contacts.add(convertContactEntityToContact(contactEntity)));

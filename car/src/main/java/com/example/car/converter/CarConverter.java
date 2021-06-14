@@ -2,6 +2,7 @@ package com.example.car.converter;
 
 import com.example.car.data.entity.CarEntity;
 import com.example.car.model.Car;
+import com.example.car.model.SimpleCar;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -18,15 +19,5 @@ public class CarConverter extends BaseConverter {
     public Car convertCarEntityToCar(CarEntity carEntity) {
         return modelMapper.map(carEntity, Car.class);
     }
-
-    public CarEntity convertCarToCarEntity(Car car) {
-        return modelMapper.map(car, CarEntity.class);
-    }
-
-    public List<Car> convertMultipleStudentEntityToStudent(List<CarEntity> studentEntities) {
-        List<Car> cars = new ArrayList<>();
-        studentEntities.forEach(carEntity -> cars.add(convertCarEntityToCar(carEntity)));
-        return cars;
-    }
-
+    
 }
